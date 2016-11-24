@@ -26,6 +26,8 @@ public class Graph {
     Dijkstra2 d;
     Vertex[] nodes;
     double radius = 0;
+    int numNodes = 0;
+    int numEdges = 0;
     public static double infinity = Double.POSITIVE_INFINITY;
 
     public Graph(String fileName) {
@@ -75,11 +77,16 @@ public class Graph {
                out.write("\n");
                times++;
             }
-            out.write(String.valueOf(d.diameter()));
+            out.write("Graph: |v|=" + String.valueOf(numNodes) + "|E|="+ String.valueOf(numEdges));
             out.write(" ");
-            out.write(String.valueOf(d.TriangleInequality()));
-            out.write(" ");
+            if(d.TriangleInequality())
+            	out.write("TIE");
+            else
+            	out.write("!TIE");
+            out.write(" Radius: ");
             out.write(String.valueOf(d.radius()));
+            out.write(" Diameter: ");
+            out.write(String.valueOf(d.diameter()));
             out.write(" ");
             out.close();
             scanner.close();
@@ -101,6 +108,8 @@ public class Graph {
             Scanner scanner = new Scanner(fis);
             numNodes = scanner.nextInt(); //read the first number = number of nudes
             numEdges = scanner.nextInt(); //read the second number = number of edges
+            this.numNodes = numNodes;
+            this.numEdges = numEdges;
             nodes = new Vertex[numNodes]; //array of vertex 
             edges = new Edge[numEdges]; //array of edges *2
             int e = 0;
