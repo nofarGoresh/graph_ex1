@@ -22,7 +22,7 @@ public class Graph {
 
     String fileName;
     String fileTestName;
-    String testAmswer = "C:\\\\Users\\\\amit\\\\Desktop\\\\testAnswer.txt";
+    //String testAmswer = "C:\\\\Users\\\\amit\\\\Desktop\\\\testAnswer.txt";
     Dijkstra2 d;
     Vertex[] nodes;
     double radius = 0;
@@ -30,9 +30,11 @@ public class Graph {
     int numEdges = 0;
     public static double infinity = Double.POSITIVE_INFINITY;
 
-    public Graph(String fileName) {
+    public Graph(String fileName,String fileTestName) {
         this.fileName = fileName;
+        this.fileTestName = fileTestName;
         nodes = createGraph();
+        createTestFileAnswer();
     }
 
     public void setFileName(String otherFileName) {
@@ -43,14 +45,14 @@ public class Graph {
         this.fileTestName = otherTestFileName;
     }
 
-    public void createTestFileAnswer(String otherTestFileName) {
-        this.fileTestName = otherTestFileName;
+    public void createTestFileAnswer() {
         nodes = createGraph();
         d = new Dijkstra2(nodes);
         try {
             FileInputStream fis = new FileInputStream(fileTestName);
             BufferedWriter out = null;
-            FileWriter fstream = new FileWriter("C:\\Users\\amit\\Desktop\\out.txt", true); //true tells to append data.
+            //FileWriter fstream = new FileWriter("C:\\Users\\amit\\Desktop\\out.txt", true); //true tells to append data.
+            FileWriter fstream = new FileWriter(fileName);
             out = new BufferedWriter(fstream);
             Scanner scanner = new Scanner(fis);
             int numTests = scanner.nextInt();
@@ -95,6 +97,7 @@ public class Graph {
         } catch (IOException ex) {
             Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     boolean flag = true;
@@ -104,8 +107,9 @@ public class Graph {
         Vertex[] nodes = null;
         Edge edges[];
         try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\amit\\Desktop\\G0.txt");
-            Scanner scanner = new Scanner(fis);
+            //FileInputStream fis = new FileInputStream("C:\\Users\\amit\\Desktop\\G0.txt");
+        	FileInputStream fis = new FileInputStream(this.fileName);
+        	Scanner scanner = new Scanner(fis);
             numNodes = scanner.nextInt(); //read the first number = number of nudes
             numEdges = scanner.nextInt(); //read the second number = number of edges
             this.numNodes = numNodes;
@@ -139,9 +143,9 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph("C:\\Users\\amit\\Desktop\\G0.txt");
+        Graph g = new Graph("C:\\Users\\amit\\Desktop\\G0.txt","C:\\Users\\amit\\Desktop\\test1.txt");
         //g.createGraph();
-        g.createTestFileAnswer("C:\\Users\\amit\\Desktop\\test1.txt");
+        //g.createTestFileAnswer("C:\\Users\\amit\\Desktop\\test1.txt");
     }
 
 }
