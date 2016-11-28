@@ -36,8 +36,7 @@ public class Graph {
         this.fileName = fileName;
         this.fileTestName = fileTestName;
         nodes = createGraph();
-        createTestFileAnswer();
-        
+        createTestFileAnswer(); 
     }
 
     public void setFileName(String otherFileName) {
@@ -54,12 +53,10 @@ public class Graph {
         try {
             FileInputStream fis = new FileInputStream(fileTestName);
             BufferedWriter out = null;
-            //FileWriter fstream = new FileWriter("C:\\Users\\amit\\Desktop\\out.txt", true); //true tells to append data.
             FileWriter fstream = new FileWriter("C:\\Users\\Nofar\\git\\graph_ex1\\ex1 - B\\src\\out.txt",true);
             out = new BufferedWriter(fstream);
             Scanner scanner = new Scanner(fis);
             int numTests = scanner.nextInt();
-            //System.out.println(numTests);
             int times = 1;
             while (times < numTests) {
                 int kod1 = scanner.nextInt();
@@ -88,7 +85,7 @@ public class Graph {
                out.write("\n");
                times++;
             }
-            out.write("Graph: |v|=" + String.valueOf(numNodes) + "|E|="+ String.valueOf(numEdges));
+            out.write("Graph:|v|=" + String.valueOf(numNodes) + " |E|="+ String.valueOf(numEdges));
             out.write(" ");
             if(d.TriangleInequality())
             	out.write("TIE");
@@ -101,7 +98,7 @@ public class Graph {
             out.write(" ");
             long endTime   = System.currentTimeMillis();
             long totalTime = endTime - startTime;
-            out.write("runTime: "+String.valueOf(totalTime));
+            out.write("runTime:"+String.valueOf(totalTime) + " ms");
             out.close();
             scanner.close();
         } catch (FileNotFoundException ex) {
@@ -112,14 +109,14 @@ public class Graph {
         
     }
 
-    boolean flag = true;
+//    boolean flag = true;
     public Vertex[] createGraph() { //returns arr of vertex - a graph
     int numNodes = 0;
         int numEdges = 0;
         Vertex[] nodes = null;
         Edge edges[];
         try {
-            //FileInputStream fis = new FileInputStream("C:\\Users\\amit\\Desktop\\G0.txt");
+           
         	FileInputStream fis = new FileInputStream(this.fileName);
         	Scanner scanner = new Scanner(fis);
             numNodes = scanner.nextInt(); //read the first number = number of nudes
@@ -137,12 +134,12 @@ public class Graph {
                 int sv = scanner.nextInt(); //read the first in the raw int from the text file
                 int v = scanner.nextInt(); //read the second in the raw int from the text file
                 double w = scanner.nextDouble(); //read the third in the raw int from the text file
-                if(flag){
-                    radius = w;
-                    flag = false;
-                }
-                if(w<radius)
-                    radius = w;
+//                if(flag){
+//                    radius = w;
+//                    flag = false;
+//                }
+//                if(w<radius)
+//                    radius = w;
                 nodes[v].edges.add(new Edge(sv,w));
                 nodes[sv].edges.add(new Edge(v,w));
             }
