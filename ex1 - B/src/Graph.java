@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author amit
+ * @author Hen and Nofar
  */
 public class Graph {
 
@@ -29,12 +29,15 @@ public class Graph {
     int numNodes = 0;
     int numEdges = 0;
     public static double infinity = Double.POSITIVE_INFINITY;
+    long startTime = 0;
 
     public Graph(String fileName,String fileTestName) {
+    	startTime = System.currentTimeMillis();
         this.fileName = fileName;
         this.fileTestName = fileTestName;
         nodes = createGraph();
         createTestFileAnswer();
+        
     }
 
     public void setFileName(String otherFileName) {
@@ -52,7 +55,7 @@ public class Graph {
             FileInputStream fis = new FileInputStream(fileTestName);
             BufferedWriter out = null;
             //FileWriter fstream = new FileWriter("C:\\Users\\amit\\Desktop\\out.txt", true); //true tells to append data.
-            FileWriter fstream = new FileWriter(fileName);
+            FileWriter fstream = new FileWriter("C:\\Users\\Nofar\\git\\graph_ex1\\ex1 - B\\src\\out.txt",true);
             out = new BufferedWriter(fstream);
             Scanner scanner = new Scanner(fis);
             int numTests = scanner.nextInt();
@@ -61,7 +64,13 @@ public class Graph {
             while (times < numTests) {
                 int kod1 = scanner.nextInt();
                 int kod2 = scanner.nextInt();
+                out.write(String.valueOf(kod1));
+                out.write(" ");
+                out.write(String.valueOf(kod2));
+                out.write(" ");
                 int arraySize = scanner.nextInt();
+                out.write(String.valueOf(arraySize));
+                out.write(" ");
                 int[] array = new int[arraySize];
                 for (int i = 0; i < array.length; i++) {
                     array[i] = scanner.nextInt();
@@ -90,6 +99,9 @@ public class Graph {
             out.write(" Diameter: ");
             out.write(String.valueOf(d.diameter()));
             out.write(" ");
+            long endTime   = System.currentTimeMillis();
+            long totalTime = endTime - startTime;
+            out.write("runTime: "+String.valueOf(totalTime));
             out.close();
             scanner.close();
         } catch (FileNotFoundException ex) {
@@ -143,9 +155,7 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph("C:\\Users\\amit\\Desktop\\G0.txt","C:\\Users\\amit\\Desktop\\test1.txt");
-        //g.createGraph();
-        //g.createTestFileAnswer("C:\\Users\\amit\\Desktop\\test1.txt");
+        Graph g = new Graph("C:\\Users\\Nofar\\Desktop\\מטלה1\\test_Ex1.txt","C:\\Users\\Nofar\\Desktop\\מטלה1\\test1_Ex1_run.txt");
     }
 
 }
