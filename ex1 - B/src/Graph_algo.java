@@ -1,4 +1,3 @@
-//package ex1.b;
 
 import java.io.FileInputStream;
 import java.io.IOException;

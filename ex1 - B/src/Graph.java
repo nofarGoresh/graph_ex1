@@ -22,7 +22,7 @@ public class Graph {
 
     String fileName;
     String fileTestName;
-    Dijkstra2 d;
+    Graph_algo d;
     Vertex[] nodes;
     double radius = 0;
     int numNodes = 0;
@@ -48,7 +48,7 @@ public class Graph {
 
     public void createTestFileAnswer() {
         nodes = createGraph();
-        d = new Dijkstra2(nodes);
+        d = new Graph_algo(nodes);
         try {
             FileInputStream fis = new FileInputStream(fileTestName);
             BufferedWriter out = null;
