@@ -22,7 +22,6 @@ public class Graph {
 
     String fileName;
     String fileTestName;
-    //String testAmswer = "C:\\\\Users\\\\amit\\\\Desktop\\\\testAnswer.txt";
     Dijkstra2 d;
     Vertex[] nodes;
     double radius = 0;
